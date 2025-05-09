@@ -38,10 +38,24 @@ public class Color {
         else return this.fromInt(this.numberValue);
     }
 
+    public javafx.scene.paint.Color asPaint() {
+        int color = this.asInt();
+
+        int r = ((color >> 16) & 0xFF) / 255;
+        int g = ((color >> 8) & 0xFF) /255;
+        int b = (color & 0xFF) / 255;
+
+        return new javafx.scene.paint.Color(r,g,b,1);
+    }
+
     @Override
     public String toString() {
         if (RuntimeProperties.colorsAsNumber)
             return ""+this.asInt();
-        else return "\"#"+this.asString()+"\"";
+        else {
+            String asString = this.asString();
+            if (!asString.startsWith("#")) asString = "#" + asString;
+            return "\"" + asString + "\"";
+        }
     }
 }

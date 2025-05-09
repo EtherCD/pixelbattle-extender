@@ -32,6 +32,6 @@ public class RuntimeProperties {
     }
     public static String generateTagsFileName(String canvasFileName) {
         String name = canvasFileName.substring(0, canvasFileName.length()-5);
-        return name + "tags.json";
+        return name + ".tags.json";
     }
 }

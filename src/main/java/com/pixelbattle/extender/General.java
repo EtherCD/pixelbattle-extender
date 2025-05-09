@@ -83,14 +83,17 @@ public class General {
             if (RuntimeProperties.generateTagTable && !RuntimeProperties.canvasEmpty) {
                 File tagsFile = Paths.get(RuntimeProperties.saveTo, tagsOutputName).toFile();
 
-                new FileWriter(tagsFile).write(TagLeaders.listTagLeaders(canvas.getPixels()));
+                FileWriter writer = new FileWriter(tagsFile);
+                writer.write(TagLeaders.listTagLeaders(canvas.getPixels()));
+                writer.close();
             }
 
             long endTime = System.currentTimeMillis();
             long diff = endTime - startTime;
             processBus.setTotalStatus("Done in " + Math.floor((double) diff /100)/10 + "s.");
-        } catch (IOException | JsonParseException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+
             MessageLauncher.launch(e.getMessage());
             if (e instanceof IOException)
                 processBus.setParsingStatus("IO Error");

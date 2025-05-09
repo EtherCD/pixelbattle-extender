@@ -48,8 +48,7 @@ public class FileManager {
         if (pixels == null)
             pixels = new ArrayList<>();
 
-        Canvas canvas = new Canvas(Math.toIntExact(deserializer.width), Math.toIntExact(deserializer.height));
-
+        Canvas canvas = new Canvas(Math.toIntExact(deserializer.width) + 1, Math.toIntExact(deserializer.height) + 1);
 
         canvas.setPixels(pixels);
 
@@ -58,43 +57,6 @@ public class FileManager {
         event.setParsingStatus("Done in " + Math.floor((double) diff /100)/10 + "s.");
 
         return canvas;
-    }
-
-    public static RuntimeProperties loadConfig(String fileName) {
-        RuntimeProperties config = new RuntimeProperties();
-
-        Path filePath = Paths.get(fileName);
-        if (filePath.toFile().exists()) {
-            Charset charset = StandardCharsets.UTF_8;
-
-            try {
-                List<String> lines = Files.readAllLines(filePath, charset);
-                StringBuilder jsonFileRaw = new StringBuilder();
-                for (String line : lines)
-                    jsonFileRaw.append(line);
-
-                return new ObjectMapper().readValue(filePath.toFile(), RuntimeProperties.class);
-            } catch (Exception ignored) {
-                MessageLauncher.launch("Config loaded with errors! Empty config was loaded");
-                return config;
-            }
-        } else {
-            try {
-                new ObjectMapper().writeValue(filePath.toFile(), config);
-            } catch (Exception ignored) {
-                MessageLauncher.launch("No access to the config file when saving");
-            }
-        }
-
-        return config;
-    }
-
-    public static void saveConfig(RuntimeProperties config, String fileName) {
-        try {
-            new ObjectMapper().writeValue(new File(fileName), config);
-        } catch (Exception ignored) {
-            MessageLauncher.launch("No access to the config file when saving");
-        }
     }
 
     public static void configure(File outputCanvasFile) {

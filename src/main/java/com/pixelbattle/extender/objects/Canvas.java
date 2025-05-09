@@ -35,8 +35,6 @@ public class Canvas {
     }
 
     public void setPixels(List<Pixel> pixels) {
-        System.out.println(pixels.size());
-        System.out.println(this.pixels.length);
         for (int i = 0; i < pixels.size(); i++)
             this.pixels[i] = pixels.get(i);
     }

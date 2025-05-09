@@ -23,7 +23,11 @@ public class TagLeaders {
                 .sorted((a, b) -> b.getValue().compareTo(a.getValue()))
                 .toList();
 
-        Gson g = new Gson();
-        return g.toJson(sorted);
+        String output = "{\n";
+        for (Map.Entry<String, Integer> value : sorted) {
+            output += "\t\""+value.getKey()+"\" : " + value.getValue() + ",\n";
+        }
+        System.out.println(output);
+        return output.substring(0, output.length()-2) + "\n}";
     }
 }

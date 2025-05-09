@@ -2,6 +2,7 @@ package com.pixelbattle.extender.javafx;
 
 import com.pixelbattle.extender.General;
 import com.pixelbattle.extender.MessageLauncher;
+import com.pixelbattle.extender.PreviewLauncher;
 import com.pixelbattle.extender.events.ProcessEventBus;
 import com.pixelbattle.extender.util.RuntimeProperties;
 import com.pixelbattle.extender.util.TransformType;
@@ -80,8 +81,7 @@ public class MainController {
                 outPreviewBtn.setDisable(false);
             });
         } catch (NumberFormatException e) {
-            if (e instanceof NumberFormatException)
-                MessageLauncher.launch("Config error: Int fields must be int values.");
+            MessageLauncher.launch("Config error: Int fields must be int values.");
             startBtn.setDisable(false);
         }
     }
@@ -105,11 +105,12 @@ public class MainController {
         selectBtn.setDisable(true);
         CompletableFuture.runAsync(() -> {
             General.runSelectCanvas();
+            startBtn.setDisable(true);
             if (!RuntimeProperties.canvasFileName.isEmpty()) {
                 inputPreviewBtn.setDisable(false);
                 startBtn.setDisable(false);
                 RuntimeProperties.canvasEmpty = false;
-                canvasStatus.setText("Canvas " +  RuntimeProperties.canvasFileName + " used.");
+                canvasStatus.setText("Canvas " +  new File(RuntimeProperties.canvasFileName).getName() + " used.");
             }
             selectBtn.setDisable(false);
         });
@@ -117,7 +118,7 @@ public class MainController {
 
     @FXML
     public void openInputPreview() {
-
+        PreviewLauncher.launch(RuntimeProperties.canvasFileName);
     }
 
     @FXML
@@ -158,7 +159,6 @@ public class MainController {
 
     public void clear() {
         processBus.clear();
-
     }
 
     private void syncRuntimeProperties() {

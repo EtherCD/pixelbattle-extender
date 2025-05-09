@@ -12,7 +12,6 @@ import java.util.HashMap;
 public class CanvasDeserializer implements JsonDeserializer<Pixel> {
     public Long width = 1L;
     public Long height = 1L;
-    public HashMap<String, Integer> tagLeaders = new HashMap<String, Integer>();
 
     @Override
     public Pixel deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
@@ -55,10 +54,8 @@ public class CanvasDeserializer implements JsonDeserializer<Pixel> {
                 throw new JsonParseException("Negative coordinates are not allowed");
             }
 
-            if (this.width < xValue)
-                this.width = xValue + 1;
-            if (this.height < yValue)
-                this.height = yValue + 1;
+            this.width = Math.max(this.width, xValue);
+            this.height = Math.max(this.height, yValue);
 
             return new Pixel(xValue, yValue, authorValue, tagValue, colorValue);
         }
@@ -81,7 +78,7 @@ public class CanvasDeserializer implements JsonDeserializer<Pixel> {
         if (element.isJsonNull())
             return false;
         JsonPrimitive primitive = element.getAsJsonPrimitive();
-        return !primitive.isNumber();
+        return !primitive.isString();
     }
 
     private boolean isNumber(JsonElement element) {
