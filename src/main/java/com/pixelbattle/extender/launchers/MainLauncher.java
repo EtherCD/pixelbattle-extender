@@ -1,6 +1,5 @@
 package com.pixelbattle.extender.launchers;
 
-import com.pixelbattle.extender.Errors;
 import com.pixelbattle.extender.GeneralProcesses;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +24,7 @@ public class MainLauncher extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) throws IOException, Errors.ChunkAddPixelError {
+    public static void main(String[] args) {
         GeneralProcesses.createPaths();
         launch();
     }
