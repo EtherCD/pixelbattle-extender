@@ -35,8 +35,8 @@ public class MainController {
         SelectCanvas.setDisable(true);
         CompletableFuture.runAsync(() -> {
             filePath = GeneralProcesses.runSelectCanvas();
-            assert filePath != null;
-            Status.setText("Canvas " + Paths.get(filePath).getFileName() + " selected.");
+            if (filePath != null)
+                Status.setText("Canvas " + Paths.get(filePath).getFileName() + " selected.");
             Start.setDisable(false);
             SelectCanvas.setDisable(false);
         });
