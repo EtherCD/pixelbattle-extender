@@ -6,7 +6,7 @@ plugins {
     id 'org.beryx.jlink' version '2.23.6'
 }
 
-mainClassName = 'com.pixelbattle.extender.Main'
+mainClassName = 'com.pixelbattle.extender.launchers.MainLauncher'
 
 repositories {
     jcenter()
@@ -15,7 +15,7 @@ repositories {
 }
 
 application {
-    mainClassName("com.pixelbattle.extender.Main")
+    mainClassName("com.pixelbattle.extender.launchers.MainLauncher")
 }
 
 javafx {
@@ -34,7 +34,7 @@ dependencies {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'com.pixelbattle.extender.Main'
+                'Main-Class': 'com.pixelbattle.extender.launchers.MainLauncher'
         )
     }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
