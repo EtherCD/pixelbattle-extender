@@ -9,13 +9,9 @@ import com.pixelbattle.extender.runtime.Type;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 
-import java.awt.event.ActionEvent;
-import java.io.File;
 import java.nio.file.Paths;
 import java.util.concurrent.CompletableFuture;
 
@@ -39,6 +35,7 @@ public class MainController {
         SelectCanvas.setDisable(true);
         CompletableFuture.runAsync(() -> {
             filePath = GeneralProcesses.runSelectCanvas();
+            assert filePath != null;
             Status.setText("Canvas " + Paths.get(filePath).getFileName() + " selected.");
             Start.setDisable(false);
             SelectCanvas.setDisable(false);
@@ -73,11 +70,9 @@ public class MainController {
                     }
                     Status.setText("Success! File " + a);
                 } catch (Exception e) {
-                    System.out.println(e);
+                    System.out.println(e.toString());
                     Status.setText("Failed");
-                    Platform.runLater(() -> {
-                        MessageLauncher.run(e.toString());
-                    });
+                    Platform.runLater(() -> MessageLauncher.run(e.toString()));
                 }
                 Start.setDisable(false);
                 SelectCanvas.setDisable(false);

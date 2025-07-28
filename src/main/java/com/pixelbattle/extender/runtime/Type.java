@@ -51,8 +51,8 @@ public class Type {
         RIGHT_BOTTOM("Right Bottom", 3),
         CENTER("Center", 4);
 
-        public String name;
-        public int id;
+        public final String name;
+        public final int id;
 
         CanvasPosition(String name, int id) {
             this.name = name;
@@ -61,13 +61,13 @@ public class Type {
 
         public Position toPosition(Size oldSize, Size newSize) {
             return switch (this.id) {
-                default -> new Position(0,0);
                 case 1 -> new Position(newSize.width - oldSize.width, 0);
                 case 2 -> new Position(0, newSize.height - oldSize.height);
                 case 3 ->
                         new Position(newSize.width - oldSize.width, newSize.height - oldSize.height);
                 case 4 ->
                         new Position((int) Math.floor((double) (newSize.width - oldSize.width) / 2), (int) Math.floor((double) (newSize.height - oldSize.height) / 2));
+                default -> new Position(0,0);
             };
         }
     }

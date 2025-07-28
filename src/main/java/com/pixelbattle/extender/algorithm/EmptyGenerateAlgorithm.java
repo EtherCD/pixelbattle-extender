@@ -1,6 +1,5 @@
 package com.pixelbattle.extender.algorithm;
 
-import com.pixelbattle.extender.Errors;
 import com.pixelbattle.extender.primitives.Pixel;
 import com.pixelbattle.extender.primitives.Size;
 import com.pixelbattle.extender.runtime.RuntimeProperties;
@@ -13,12 +12,12 @@ public class EmptyGenerateAlgorithm {
     public BufferedWriter outputStream;
     public ChunkWriteWrapper writeWrapper;
 
-    public EmptyGenerateAlgorithm(BufferedWriter outputStream) throws IOException, Errors.ChunkAddPixelError {
+    public EmptyGenerateAlgorithm(BufferedWriter outputStream) throws IOException {
         this.outputStream = outputStream;
         this.writeWrapper = new ChunkWriteWrapper(outputStream);
     }
 
-    public void run() throws IOException, Errors.ChunkAddPixelError {
+    public void run() throws IOException {
         Size extendSize = RuntimeProperties.OLD_SIZE;
 
         for (int y = 0; y < extendSize.height; y++) {

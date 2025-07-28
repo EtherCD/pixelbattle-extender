@@ -1,6 +1,5 @@
 package com.pixelbattle.extender.wrappers;
 
-import com.pixelbattle.extender.Errors;
 import com.pixelbattle.extender.managers.SerializeManager;
 import com.pixelbattle.extender.primitives.Chunk;
 import com.pixelbattle.extender.primitives.Pixel;
@@ -30,7 +29,7 @@ public class ChunkWriteWrapper {
         this.manager.end();
     }
 
-    public void add(Pixel pixel) throws IOException, Errors.ChunkAddPixelError {
+    public void add(Pixel pixel) throws IOException {
         this.chunk.setPixel(this.chunk.index, pixel);
         if (!this.chunk.next()) {
             if (!this.first) this.manager.mark();

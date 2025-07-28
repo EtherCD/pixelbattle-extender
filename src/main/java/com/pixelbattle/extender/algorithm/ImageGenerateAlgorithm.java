@@ -1,6 +1,5 @@
 package com.pixelbattle.extender.algorithm;
 
-import com.pixelbattle.extender.Errors;
 import com.pixelbattle.extender.primitives.Pixel;
 import com.pixelbattle.extender.primitives.Position;
 import com.pixelbattle.extender.primitives.Size;
@@ -18,17 +17,16 @@ public class ImageGenerateAlgorithm {
     public BufferedReader reader;
     public OutputStream outputStream;
     public ChunkReadWrapper wrapper;
-    public BufferedImage image;
     public Size size;
 
-    public ImageGenerateAlgorithm(BufferedReader reader, OutputStream outputStream, Size size) throws IOException, Errors.ChunkAddPixelError {
+    public ImageGenerateAlgorithm(BufferedReader reader, OutputStream outputStream, Size size) throws IOException {
         this.reader = reader;
         this.outputStream = outputStream;
         this.wrapper = new ChunkReadWrapper(reader);
         this.size = size;
     }
 
-    public void run(Type.Image typeImage) throws IOException, Errors.ChunkAddPixelError {
+    public void run(Type.Image typeImage) throws IOException {
         BufferedImage image = new BufferedImage(this.size.width, this.size.height, BufferedImage.TYPE_INT_RGB);
 
         while (this.wrapper.isNotEnd()) {

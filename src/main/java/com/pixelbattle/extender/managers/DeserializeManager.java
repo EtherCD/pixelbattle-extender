@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pixelbattle.extender.Errors;
 import com.pixelbattle.extender.primitives.Chunk;
 import com.pixelbattle.extender.primitives.Pixel;
 

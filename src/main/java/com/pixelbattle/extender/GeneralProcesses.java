@@ -1,10 +1,8 @@
 package com.pixelbattle.extender;
 
 import com.pixelbattle.extender.algorithm.*;
-import com.pixelbattle.extender.primitives.Size;
 import com.pixelbattle.extender.runtime.RuntimeProperties;
 import com.pixelbattle.extender.runtime.Type;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.io.*;
@@ -30,7 +28,7 @@ public class GeneralProcesses {
         }
     }
 
-    public static String empty() throws IOException, Errors.ChunkAddPixelError {
+    public static String empty() throws IOException {
        {
             String resultPath = generateCanvasFileName("empty.json");
             File outputFile = Paths.get(resultPath).toFile();
@@ -66,7 +64,7 @@ public class GeneralProcesses {
         }
     }
 
-    public static String image(String filePathToCanvas, Type.Image image) throws IOException, Errors.ChunkAddPixelError {
+    public static String image(String filePathToCanvas, Type.Image image) throws IOException {
         {
             File inputFile, outputFile;
             inputFile = Paths.get(filePathToCanvas).toFile();
