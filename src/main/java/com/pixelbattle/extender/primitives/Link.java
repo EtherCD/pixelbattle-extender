@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Link {
     @JsonProperty("$numberLong")
-    private final String value;
+    private String value;
+
+    public Link() {
+    }
 
     public Link(String value) {
         this.value = value;

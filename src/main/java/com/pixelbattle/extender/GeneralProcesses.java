@@ -74,12 +74,13 @@ public class GeneralProcesses {
             OutputStream writer = new FileOutputStream(outputFile);
 
             reader.close();
-            writer.close();
 
             reader = new BufferedReader(new FileReader(inputFile));
 
             ImageGenerateAlgorithm algorithm = new ImageGenerateAlgorithm(reader, writer, RuntimeProperties.OLD_SIZE);
             algorithm.run(image);
+
+            writer.close();
 
             return outputFile.getName();
         }
